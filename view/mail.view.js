@@ -8,8 +8,13 @@ router.use((req, res, next) => {
 });
 
 router.post('/send-email', async (req, res) => {
+  const { email, link } = req.body;
+
   try {
-    const emailRes = await sendEmailToUser();
+    const emailRes = await sendEmailToUser({
+      email,
+      link,
+    });
 
     return res.json({ success: true, emailRes });
   } catch (error) {
