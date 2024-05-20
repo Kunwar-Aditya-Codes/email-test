@@ -8,12 +8,31 @@ router.use((req, res, next) => {
 });
 
 router.post('/send-email', async (req, res) => {
-  const { email, link } = req.body;
+  const {
+    email,
+    link,
+    meetingId,
+    title,
+    agenda,
+    date,
+    startTime,
+    endTime,
+    mode,
+    place,
+  } = req.body;
 
   try {
     const emailRes = await sendEmailToUser({
       email,
       link,
+      meetingId,
+      title,
+      agenda,
+      date,
+      startTime,
+      endTime,
+      mode,
+      place,
     });
 
     return res.json({ success: true, emailRes });
